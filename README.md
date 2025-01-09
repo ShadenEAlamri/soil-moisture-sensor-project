@@ -68,3 +68,5 @@ Stick the soil moisture sensor probes into the soil of your plants.
 Watch the LCD display for moisture level readings.
 Take note of how the LEDs behave and if the water pump activates when the soil is dry.
 
+## LINK to the tinkercad 
+https://www.tinkercad.com/things/iH39TqooF8y/editel?sharecode=MTqZjSVbmNrthmji8dQH3ejcy-jSyAKKYfs4-dFYAkk
