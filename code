@@ -1,0 +1,64 @@
+#include <LiquidCrystal.h>
+#include <Servo.h>
+Servo myservo; 
+const int SMS = A1;
+int motor = 9;
+int LR = 7;
+int LG = 6;
+
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+void setup() {
+  myservo.attach(9);
+  pinMode(LR, OUTPUT);
+  pinMode(LG, OUTPUT);
+  lcd.begin(16, 2);
+  lcd.print("Automated Crop");
+  lcd.setCursor(0,1);
+  lcd.print("Watering System!");
+  delay(2000);
+  lcd.clear();
+  lcd.print("SoilM = ");
+  lcd.setCursor(0,1);
+  lcd.print("WaterPump= ");
+  Serial.begin(9600);
+}
+
+void loop() {
+  float Moisture;
+  int sensor_analog;
+  sensor_analog = analogRead(A1);
+  Moisture = ( (sensor_analog/1023.00) * 100 ) ;
+  Serial.print("Moisture Percentage = ");
+  Serial.print(Moisture);
+  Serial.print("%\n\n");
+  delay(1000);
+  lcd.setCursor(11,0);
+  lcd.print("%");
+  lcd.setCursor(6,0);
+  lcd.print(Moisture); 
+  lcd.setCursor(11,1);
+  
+
+  if (Moisture < 40){
+    myservo.write(0);  
+    digitalWrite(LR, HIGH);
+    digitalWrite(LG, LOW);
+    lcd.print("ON ");
+    delay(1500);
+  }
+  else {
+    myservo.write(180);  
+    digitalWrite(LR, LOW);
+    digitalWrite(LG, HIGH);
+    lcd.print("OFF");
+    delay(1500);
+
+  }
+  
+Serial.print ("Moisture");
+  Serial.println (Moisture);
+}
+  
+ 
